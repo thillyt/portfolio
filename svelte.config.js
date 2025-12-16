@@ -1,18 +1,46 @@
-import adapter from '@sveltejs/adapter-auto';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from "@sveltejs/adapter-static";
+import autoprefixer from "autoprefixer";
+import { readFileSync } from "fs";
+import preprocess from "svelte-preprocess";
+import { fileURLToPath } from "url";
+import tailwindcss from "tailwindcss";
+
+const file = fileURLToPath(new URL("package.json", import.meta.url));
+const json = readFileSync(file, "utf8");
+const { version } = JSON.parse(json);
+
+const filesPath = (path) => `${path}`;
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://svelte.dev/docs/kit/integrations
-	// for more information about preprocessors
-	preprocess: vitePreprocess(),
-
-	kit: {
-		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
-		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
-		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter()
-	}
+  // Consult https://github.com/sveltejs/svelte-preprocess
+  // for more information about preprocessors
+  preprocess: preprocess(),
+  kit: {
+    adapter: adapter({
+      fallback: "index.html",
+      precompress: false,
+    }),
+    files: {
+      assets: filesPath("static"),
+      hooks: {
+        client: filesPath("src/hooks.client"),
+        server: filesPath("src/hooks.server"),
+      },
+      lib: filesPath("src/lib"),
+      params: filesPath("src/params"),
+      routes: filesPath("src/routes"),
+      serviceWorker: filesPath("src/service-worker"),
+      appTemplate: filesPath("src/app.html"),
+      errorTemplate: filesPath("src/error.html"),
+    },
+  },
+  serviceWorker: {
+    register: false,
+  },
+  version: {
+    name: version,
+  },
+  trailingSlash: "always",
 };
-
 export default config;
