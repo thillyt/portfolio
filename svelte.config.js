@@ -10,6 +10,7 @@ const json = readFileSync(file, "utf8");
 const { version } = JSON.parse(json);
 
 const filesPath = (path) => `${path}`;
+const dev = process.env.NODE_ENV === "development";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -17,6 +18,9 @@ const config = {
   // for more information about preprocessors
   preprocess: preprocess(),
   kit: {
+    paths: {
+      base: dev ? "" : "/portfolio"
+    },
     adapter: adapter({
       fallback: "index.html",
       precompress: false,
