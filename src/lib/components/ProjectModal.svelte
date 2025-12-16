@@ -79,18 +79,18 @@
         class="relative z-50 p-4 mx-auto w-full max-w-6xl sm:p-6"
       >
         <div
-          class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl flex flex-col h-[80vh]"
+          class="bg-gray-800 border border-gray-700 rounded-xl shadow-2xl flex flex-col h-[92dvh] md:h-[80vh]"
           data-modal-content
         >
           <!-- Header -->
-          <div class="flex-none px-6 py-4 border-b border-gray-200 dark:border-gray-700 sm:px-8 sm:py-6">
+          <div class="flex-none px-6 py-4 border-b border-gray-700 sm:px-8 sm:py-6">
             <div class="flex justify-between items-center">
-              <h3 id="modalTitle" class="text-2xl font-semibold text-gray-800 dark:text-white">
+              <h3 id="modalTitle" class="text-2xl font-semibold text-white">
                 {project.title}
               </h3>
               <button
                 onclick={close}
-                class="p-2 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="p-2 rounded-lg transition-colors hover:bg-gray-700"
                 aria-label="Close modal"
               >
                 <CloseIcon className="w-6 h-6" fill="currentColor" />
@@ -101,7 +101,7 @@
           <!-- Content Area -->
           <div id="modalContent" class="flex overflow-hidden flex-col flex-1 md:flex-row">
             <!-- Slideshow -->
-            <div class="overflow-hidden relative w-full bg-gray-100 md:w-2/3 dark:bg-gray-700">
+            <div class="overflow-hidden relative w-full bg-gray-700 md:w-2/3 min-h-[45dvh] md:min-h-0">
               {#each project.images as image, i}
                 <div
                   class="flex absolute inset-0 justify-center items-center p-4 transition-opacity duration-300"
@@ -120,7 +120,7 @@
               <!-- Navigation Arrows -->
               <button
                 onclick={prevSlide}
-                class="absolute left-4 top-1/2 p-2 rounded-full backdrop-blur-sm transition-colors -translate-y-1/2 bg-white/30 dark:bg-gray-700/30 hover:bg-white/50 dark:hover:bg-gray-600/50"
+                class="absolute left-4 top-1/2 p-2 rounded-full backdrop-blur-sm transition-colors -translate-y-1/2 bg-gray-700/30 hover:bg-gray-600/50"
                 aria-label="Previous image"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -129,7 +129,7 @@
               </button>
               <button
                 onclick={nextSlide}
-                class="absolute right-4 top-1/2 p-2 rounded-full backdrop-blur-sm transition-colors -translate-y-1/2 bg-white/30 dark:bg-gray-700/30 hover:bg-white/50 dark:hover:bg-gray-600/50"
+                class="absolute right-4 top-1/2 p-2 rounded-full backdrop-blur-sm transition-colors -translate-y-1/2 bg-gray-700/30 hover:bg-gray-600/50"
                 aria-label="Next image"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -142,7 +142,7 @@
                 {#each project.images as _, i}
                   <button
                     onclick={() => currentSlide = i}
-                    class="w-3 h-3 rounded-full transition-colors {i === currentSlide ? 'bg-blue-600' : 'bg-slate-300/50 dark:bg-slate-500/50'}"
+                    class="w-3 h-3 rounded-full transition-colors {i === currentSlide ? 'bg-blue-600' : 'bg-slate-500/50'}"
                     aria-label={`Go to slide ${i + 1}`}
                   ></button>
                 {/each}
@@ -150,17 +150,17 @@
             </div>
   
             <!-- Description Panel -->
-            <div class="overflow-y-auto p-6 w-full border-t border-gray-200 md:w-1/3 md:border-t-0 md:border-l dark:border-gray-700">
+            <div class="overflow-y-auto p-6 w-full border-t border-gray-700 md:w-1/3 md:border-t-0 md:border-l">
               {#if currentSlide === 0}
                 <div class="space-y-4">
-                  <h4 class="text-lg font-semibold text-gray-800 dark:text-white">Project Overview</h4>
-                  <p class="text-gray-600 dark:text-gray-300">{project.description}</p>
+                  <h4 class="text-lg font-semibold text-white">Project Overview</h4>
+                  <p class="text-gray-300">{project.description}</p>
                   
                   <div class="pt-4">
-                    <h5 class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Technologies Used</h5>
+                    <h5 class="mb-2 text-sm font-medium text-gray-400">Technologies Used</h5>
                     <div class="flex flex-wrap gap-2">
                       {#each project.tags as tag}
-                        <span class="px-3 py-1 text-sm text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-200">
+                        <span class="px-3 py-1 text-sm text-blue-200 bg-blue-900 rounded-full">
                           {tag}
                         </span>
                       {/each}
@@ -169,8 +169,8 @@
                 </div>
               {:else}
                 <div class="space-y-4">
-                  <h4 class="text-lg font-semibold text-gray-800 dark:text-white">Feature Details</h4>
-                  <p class="text-gray-600 dark:text-gray-300">
+                  <h4 class="text-lg font-semibold text-white">Feature Details</h4>
+                  <p class="text-gray-300">
                     {project.images[currentSlide].description}
                   </p>
                 </div>
