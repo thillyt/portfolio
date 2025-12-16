@@ -46,9 +46,18 @@
       if (e.key === 'ArrowLeft') prevSlide();
       if (e.key === 'Escape') close();
     }
+
+    function preloadImage(src: string) {
+      const img = new Image();
+      img.src = `${base}${src}`;
+    }
   
     onMount(() => {
       document.body.style.overflow = 'hidden';
+
+      project.images.forEach((image: { src: string }) => {
+        preloadImage(image.src);
+      });
       return () => {
         document.body.style.overflow = '';
       };

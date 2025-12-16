@@ -2,8 +2,14 @@
   import { fade, fly } from 'svelte/transition';
   import { projects } from '$lib/data/projects';
   import { base } from '$app/paths';
+  import { onMount } from 'svelte';
   import NavBar from '$lib/components/NavBar.svelte';
   import ProjectModal from '$lib/components/ProjectModal.svelte';
+
+  function preload(src: string) {
+    const img = new Image();
+    img.src = `${base}${src}`;
+  }
 
   let formData = {
     name: '',
@@ -101,7 +107,18 @@
     selectedProject = project;
     showModal = true;
   }
+
+  onMount(() => {
+
+    projects.forEach((p) => preload(p.image));
+    projects.forEach((p) => p.images?.[0] && preload(p.images[0].src));
+});
 </script>
+
+<svelte:head>
+  <link rel="preload" as="image" href={`${base}/thilly.jpg`} />
+  <link rel="preload" as="image" href={`${base}/TT_logo.png`} />
+</svelte:head>
 
 <div class="min-h-screen transition-colors duration-300 bg-slate-900">
 <!-- Navigation -->
