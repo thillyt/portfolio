@@ -2,6 +2,7 @@
     import { quintOut } from 'svelte/easing';
     import { fade, scale } from 'svelte/transition';
     import { onMount } from 'svelte';
+    import { base } from '$app/paths';
     import CloseIcon from '$lib/icons/CloseIcon.svelte';
   
     const { project, onClose } = $props<{
@@ -100,7 +101,7 @@
                   class:pointer-events-none={i !== currentSlide}
                 >
                   <img
-                    src={image.src}
+                    src={`${base}${image.src}`}
                     alt={`${project.title} screenshot ${i + 1}`}
                     class="object-contain max-w-full max-h-full"
                   />

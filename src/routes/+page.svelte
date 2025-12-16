@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fade, fly } from 'svelte/transition';
   import { projects } from '$lib/data/projects';
+  import { base } from '$app/paths';
   import NavBar from '$lib/components/NavBar.svelte';
   import ProjectModal from '$lib/components/ProjectModal.svelte';
 
@@ -175,7 +176,7 @@
         >
           <div class="flex justify-center items-center h-48 bg-slate-900">
             <img 
-              src={project.image} 
+              src={`${base}${project.image}`} 
               alt={project.title} 
               class="object-cover w-full h-full"
               loading="lazy"
