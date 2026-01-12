@@ -135,7 +135,7 @@
         Hello, I'm <span class="text-indigo-500">Thilly Thana</span>
       </h1>
       <h2 class="mb-8 text-2xl font-normal md:text-3xl text-slate-300">
-        Frontend and BI Developer building modern dashboards, web and app experiences
+        Frontend and UX/UI Developer building modern dashboards, web and app experiences
       </h2>
       <p class="mb-8 text-lg text-slate-300">Passionate about crafting delightful, performant, and accessible user interfaces.</p>
       <div class="flex flex-col gap-4 sm:flex-row">

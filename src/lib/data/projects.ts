@@ -1,8 +1,8 @@
 export const projects = [
   {
     title: "OpenFPL",
-    description: "OpenFPL is a web 3 fantasy football platform that allows users to create and manage their own fantasy football team and earn rewards depending on their team's performance.",
-    tags: ["Svelte", "HTML5", "CSS3", "CI/CD Pipeline"],
+    description: "OpenFPL is a web 3 fantasy football platform that allows users to create and manage their own fantasy football team and earn rewards depending on their team's performance. I built the frontend for this project on Svelte, Typescript and Tailwind CSS.",
+    tags: ["Svelte", "Typescript", "Tailwind CSS"],
     link: "https://openfpl.xyz",
     image: "/projects/openFPL/openFPL_logo.jpg",
     images: [
